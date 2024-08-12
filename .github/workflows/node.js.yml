@@ -30,13 +30,4 @@ jobs:
     - name: Run tests
       run: npm test
 
-    - name: Build project
-      run: npm run build # If you have a build step
 
-    - name: Publish to npm
-      if: github.ref == 'refs/heads/main' # Publish only on main branch
-      env:
-        NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }} # Use the npm token secret
-      run: |
-        npm version patch # or minor/major as needed
-        npm publish
