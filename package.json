@@ -1,37 +1,23 @@
-name: Node.js CI
-
-on:
-  push:
-    branches:
-      - main
-  pull_request:
-    branches:
-      - main
-
-jobs:
-  build:
-    runs-on: ubuntu-latest
-
-    steps:
-    - name: Checkout code
-      uses: actions/checkout@v4
-      with:
-        # Ensures that changes are fetched
-        fetch-depth: 0
-
-    - name: Set up Node.js
-      uses: actions/setup-node@v3
-      with:
-        node-version: '16' # Specify the version of Node.js you need
-
-    - name: Install dependencies
-      run: npm install
-
-    - name: Run tests
-      run: npm test
-
-    - name: Clean working directory
-      run: |
-        git status
-        git add -A
-        git commit -m "Auto commit before build" || echo "No changes to commit"
+{
+    "name": "my-app",
+    "version": "1.0.0",
+    "description": "A simple Node.js application",
+    "main": "index.js",
+    "scripts": {
+      "start": "node index.js",
+      "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "author": "John Doe",
+    "license": "MIT",
+    "dependencies": {
+      "express": "^4.17.1"
+    },
+    "devDependencies": {
+      "nodemon": "^2.0.7"
+    },
+    "keywords": [
+      "node",
+      "express",
+      "application"
+    ]
+  }
