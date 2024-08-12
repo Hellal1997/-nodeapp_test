@@ -11,7 +11,8 @@
     "supertest": "6.1.6"
   },
   "scripts": {
-    "start": "node index.js",
-    "test": "./node_modules/.bin/mocha ./test/test.js"
+  "test": "mocha ./test/test.js"
+}
+
   }
 }
