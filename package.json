@@ -1,18 +1,37 @@
-{
-  "name": "node-app",
-  "description": "Nodeapp for CICD test",
-  "version": "0.0.1",
-  "private": true,
-  "dependencies": {
-    "express": "4.17.1"
-  },
-  "devDependencies": {
-    "mocha": "9.1.1",
-    "supertest": "6.1.6"
-  },
-  "scripts": {
-  "test": "mocha ./test/test.js"
-}
+name: Node.js CI
 
-  }
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
 
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      with:
+        # Ensures that changes are fetched
+        fetch-depth: 0
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '16' # Specify the version of Node.js you need
+
+    - name: Install dependencies
+      run: npm install
+
+    - name: Run tests
+      run: npm test
+
+    - name: Clean working directory
+      run: |
+        git status
+        git add -A
+        git commit -m "Auto commit before build" || echo "No changes to commit"
